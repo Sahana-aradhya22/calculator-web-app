@@ -1,104 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Calculator</title>
 
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-    background:#1d1d1d;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
+background:#1f1f1f;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
 }
 
 .calculator{
-    width:360px;
-    background:#2d2d2d;
-    border-radius:20px;
-    padding:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,.5);
+width:360px;
+background:#2c2c2c;
+padding:25px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,.5);
 }
 
 .display{
-
-    background:#111;
-    color:#00ff99;
-    padding:20px;
-    border-radius:12px;
-    margin-bottom:20px;
+background:#000;
+height:90px;
+border-radius:15px;
+padding:15px;
+margin-bottom:20px;
+display:flex;
+justify-content:flex-end;
+align-items:flex-end;
+overflow:hidden;
 }
 
 .display h1{
-    font-size:40px;
-    text-align:right;
-}
-
-.display p{
-    color:#aaa;
-    text-align:right;
+color:#00ff88;
+font-size:42px;
+font-weight:normal;
 }
 
 input{
-
-    width:100%;
-    padding:15px;
-    margin-bottom:15px;
-    border:none;
-    border-radius:10px;
-    background:#444;
-    color:white;
-    font-size:18px;
-
+width:100%;
+padding:15px;
+margin-bottom:15px;
+font-size:18px;
+background:#444;
+border:none;
+border-radius:10px;
+color:white;
 }
 
 .grid{
-
 display:grid;
 grid-template-columns:repeat(2,1fr);
 gap:12px;
-
 }
 
 button{
-
 padding:18px;
-font-size:18px;
+font-size:24px;
 border:none;
 border-radius:12px;
 cursor:pointer;
-background:#4e4e4e;
-color:white;
 transition:.3s;
-
 }
 
-button:hover{
-
-background:#666;
-
-}
-
-.orange{
-
+.operator{
 background:#ff9500;
-
+color:white;
 }
 
-.orange:hover{
+.operator:hover{
+background:#ffad33;
+}
 
-background:#ffa733;
+.clear{
+background:#e53935;
+color:white;
+grid-column:span 2;
+}
 
+.clear:hover{
+background:#ff5252;
 }
 
 </style>
@@ -110,27 +104,20 @@ background:#ffa733;
 <div class="calculator">
 
 <div class="display">
-
-<p>Result</p>
-
-<h1>
-
+<h1 id="result">
 {% if result is not none %}
 {{ result }}
-{% else %}
-0
 {% endif %}
-
 </h1>
-
 </div>
 
-<form method="POST">
+<form method="POST" id="calcForm">
 
 <input
 type="number"
 step="any"
 name="num1"
+id="num1"
 placeholder="First Number"
 required>
 
@@ -138,24 +125,44 @@ required>
 type="number"
 step="any"
 name="num2"
+id="num2"
 placeholder="Second Number"
 required>
 
 <div class="grid">
 
-<button class="orange" name="operation" value="add">+</button>
+<button class="operator" name="operation" value="add">+</button>
 
-<button class="orange" name="operation" value="subtract">−</button>
+<button class="operator" name="operation" value="subtract">−</button>
 
-<button class="orange" name="operation" value="multiply">×</button>
+<button class="operator" name="operation" value="multiply">×</button>
 
-<button class="orange" name="operation" value="divide">÷</button>
+<button class="operator" name="operation" value="divide">÷</button>
+
+<button
+type="button"
+class="clear"
+onclick="clearCalculator()">
+C
+</button>
 
 </div>
 
 </form>
 
 </div>
+
+<script>
+
+function clearCalculator(){
+
+document.getElementById("num1").value="";
+document.getElementById("num2").value="";
+document.getElementById("result").innerHTML="";
+
+}
+
+</script>
 
 </body>
 </html>
