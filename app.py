@@ -27,7 +27,6 @@ def home():
                 else:
                     result = num1 / num2
 
-            # Format the result
             if isinstance(result, float):
                 if result.is_integer():
                     result = int(result)
