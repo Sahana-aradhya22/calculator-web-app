@@ -5,28 +5,35 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def home():
     result = None
+    num1 = ""
+    num2 = ""
 
     if request.method == "POST":
         try:
-            num1 = float(request.form["num1"])
-            num2 = float(request.form["num2"])
+            num1 = request.form["num1"]
+            num2 = request.form["num2"]
+
+            n1 = float(num1)
+            n2 = float(num2)
+
             operation = request.form["operation"]
 
             if operation == "add":
-                result = num1 + num2
+                result = n1 + n2
 
             elif operation == "subtract":
-                result = num1 - num2
+                result = n1 - n2
 
             elif operation == "multiply":
-                result = num1 * num2
+                result = n1 * n2
 
             elif operation == "divide":
-                if num2 == 0:
+                if n2 == 0:
                     result = "Cannot divide by zero"
                 else:
-                    result = num1 / num2
+                    result = n1 / n2
 
+            # Display whole numbers without .0
             if isinstance(result, float):
                 if result.is_integer():
                     result = int(result)
@@ -36,7 +43,12 @@ def home():
         except ValueError:
             result = "Please enter valid numbers"
 
-    return render_template("index.html", result=result)
+    return render_template(
+        "index.html",
+        result=result,
+        num1=num1,
+        num2=num2
+    )
 
 
 if __name__ == "__main__":
