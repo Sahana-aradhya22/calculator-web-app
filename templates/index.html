@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -61,6 +62,10 @@ border-radius:10px;
 color:white;
 }
 
+input::placeholder{
+color:#bbb;
+}
+
 .grid{
 display:grid;
 grid-template-columns:repeat(2,1fr);
@@ -92,7 +97,7 @@ grid-column:span 2;
 }
 
 .clear:hover{
-background:#ff5252;
+background:#ff6666;
 }
 
 </style>
@@ -118,6 +123,7 @@ type="number"
 step="any"
 name="num1"
 id="num1"
+value="{{ num1 }}"
 placeholder="First Number"
 required>
 
@@ -126,6 +132,7 @@ type="number"
 step="any"
 name="num2"
 id="num2"
+value="{{ num2 }}"
 placeholder="Second Number"
 required>
 
@@ -165,4 +172,5 @@ document.getElementById("result").innerHTML="";
 </script>
 
 </body>
+
 </html>
